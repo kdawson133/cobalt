@@ -1,101 +1,43 @@
-# Notenote.link
+# Canonize
+## Template for a “personal canon” website page.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7b37d412-1240-44dd-8539-a7001465b57a/deploy-status)](https://app.netlify.com/sites/notenotelink/deploys)
+Canonize is a simple, extensible framework for showcasing your “personal canon” — the most important, influential, formative texts and media in your life. It's intended to be added as a page to your personal website, to serve as a kind of library of highlights, a résumé of personal influences, a peek at the threads that have led to your work and way of thinking.
 
-## Update !
+### Read more about why I made the Canonize project here:
+[Canonize: Creating a Personal Canon Template](https://www.brendanschlagel.com/2017/11/05/canonize-creating-personal-canon-template/)
 
-Hi everyone ! I recently updated the template so that you can now link headers : [[note#header\\|title]], which is done natively in Obsidian. Besides, there are now header links that appear on hover. As my notes get longer and longer, this functionnality became very necessary for meaningful linkings. If you see a bug, please open an issue about it !
+## To make your own “/canon” page:
+- Make an awesome list of your canon items — see the “items” folder in this repo for an example of how I made mine (iteratively narrowing down from a massive list to a manageable one)
+- Fork, clone, or otherwise appropriate the files from the “website” folder in this repo
+- Edit the “index.html” page to include the items of your own canon, and optionally any category groupings you may want (each living inside the wrapper div with class="category" and id=“$YOUR-CATEGORY-SLUG”)
+- Select one of the three included CSS “theme” files, and modify to your heart’s desire until your canon page looks hype as hell
+- Add this page to your site using your preferred method of wrangling web files
+- If, in the course of editing, you run into any bugs in these files, or have suggestions for improving them, feel free to submit a pull request
+- When you’re done, I’d love to check out your canon! Feel free to contact me via https://www.brendanschlagel.com/
 
-## What is this?
+## Canon Themes:
+I made three starter themes, each a simple CSS files you can use for your canon page: Light, Dark, and Manuscript. I actually started with the latter, to match the design on my current site, and more recently added the light / dark themes as a fun design exercise. You can use these as a rough starting point and modify as much or as little as you like. Here’s what each looks like:
 
-A digital garden using a custom version of `simply-jekyll`, optimised for integration with [Obsidian](https://obsidian.md). It is more oriented on note-taking and aims to help you build a nice knowledge base that can scale with time. 
+### Example: Light Theme
+![Example: Light Theme](/images/canonize-theme-light.jpg?raw=true "Example: Light Theme")
 
-**Demo is here: [notenote.link](https://notenote.link)**
+### Example: Dark Theme
+![Example: Dark Theme](/images/canonize-theme-dark.jpg?raw=true "Example: Dark Theme")
 
-If you want to see a more refined example, you can check my notes (in french) at [arboretum.link](https://www.arboretum.link/). Build time is approx. 15 seconds, FYI.
+### Example: Manuscript Theme
+![Example: Manuscript Theme](/images/canonize-theme-manuscript.jpg?raw=true "Example: Manuscript Theme")
 
-Issues are welcome, including feedback ! Don't hesitate to ask if you can't find a solution. 💫
+## Massive credit to the following for personal canon inspiration:
+- [David Cole](http://davidcole.me/canon/)
+- [Mandy Brown](http://aworkinglibrary.com/)
+- [Buster Benson](https://buster.gitbooks.io/public/book-of-beliefs.html#articles)
+- [Bret Victor](http://worrydream.com/#!/Links)
 
-![screenshot](/assets/img/screenshot.png)
+## Thanks as well to the following great examples of similar projects:
+- [Diana Kimball’s “/mentoring” project](https://github.com/dianakimball/mentoring)
+- [Derek Sivers’ “/now” project](http://nownownow.com/about)
 
-## What is different?
-
-- Markdown is fully-compatible with Obsidian (including Latex delimiters!)
-- There are now only notes (no blog posts).
-- There are cosmetic changes (ADHD-friendly code highlighting, larger font, larger page)
-- Code is now correctly indented
-- Wikilinks, but also alt-text wikilinks (with transclusion!) are usable.
-
-## How do I use this?
-
-You can click on this link and let the deploy-to-netlify-for-free-script do the rest !
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/Maxence-L/notenote.link)
-
-Follow the [How to setup this site](https://notenote.link/notes/how-to-setup-this-site) guide, written by [raghuveerdotnet](https://github.com/raghuveerdotnet) and then adapted for this fork.
-
-If you want to use it with Github Pages, it is possible, [please read this](https://github.com/Maxence-L/notenote.link/issues/5#issuecomment-762508069).
-
-## How can I participate?
-
-Open an issue to share feedback or propose features. Star the repo if you like it! 🌟
-
-## How do I customize this for my needs?
-
-Things to modify to make it yours:
-
-- Meta content in [\_layouts/post.html](_layouts/post.html):
-    ```html
-    <meta content="My linked notebook" property="og:site_name"/>
-    ```
-- The favicon and profile are here: [assets/img/](assets/img/)
-- The main stuff is in [\_config.yml](_config.yml):
-    ```yaml
-    title: notenotelink.netlify.com
-    name: notenote.link
-    user_description: My linked notebook
-
-    notes_url: "https://notenotelink.netlify.com/"
-    profile_pic: /assets/img/profile.png
-    favicon: /assets/img/favicon.png
-    copyright_name: MIT
-
-    baseurl: "/" # the subpath of your site, e.g. /blog
-    url: "https://notenotelink.netlify.com/" # the base hostname & protocol for your site, e.g. http://example.com
-    encoding: utf-8
-    ```
-- You may want to change the copyright in [\_includes/footer.html](_includes/footer.html):
-   ```html
-   <p id="copyright-notice">Licence MIT</p>
-   ```
-
-## How do I remove the "seasons" feature for the notes?
-
-Delete what's inside [\_includes/feed.html](_includes/feed.html) and replace it with:
-
-```liquid
-{%- if page.permalink == "/" -%}
-    {%- for item in site.notes -%}
-        <div class="feed-title-excerpt-block disable-select" data-url="{{site.url}}{{item.url}}">
-            <a href="{{ item.url }}" style="text-decoration: none; color: #555555;">
-            {%- if item.status == "Ongoing" or item.status == "ongoing" -%}
-                <ul style="padding-left: 20px; margin-top: 20px;" class="tags">
-                    <li style="padding: 0 5px; border-radius: 10px;" class="tag"><b>Status: </b>{{item.status | capitalize }}</li>
-                </ul>
-                <p style="margin-top: 0px;" class="feed-title">{{ item.title }}</p>
-            {%- else -%}
-                <p class="feed-title">{{ item.title }}</p>
-            {%- endif -%}
-                <p class="feed-excerpt">{{ item.content | strip_html | strip | escape | truncate: 200}}</p>
-            </a>
-        </div>
-    {%- endfor -%}
-{%- endif -%}
-````
-
-On command-line, you can run `bundle exec jekyll serve` then go to `localhost:4000` to check the result.
-
-## What's coming?
-
-- [Open-transclude](https://subpixel.space/entries/open-transclude/) integration in the template, if possible.
-- Different themes! - Please tell me which you'd like to have!
+## Have a “/canon” page of your own? Add to this list and submit a PR :)
+- [Brendan Schlagel](https://www.brendanschlagel.com/canon/) (my current canon, in situ)
+- [Ilhan Ozgen](https://ilhanozgenxian.com/canon/)
+- [Your Canon page goes here...?!]
