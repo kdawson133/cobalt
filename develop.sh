@@ -1,3 +1,5 @@
 #!/bin/bash
 git pull
-bundle exec jekyll serve
+
+vim html/index.html
+

@@ -1,6 +1,4 @@
 #!/bin/bash
-rm -rf _site
-bundle exec jekyll build
-rsync -avze --delete --exclude={"*.sh","README.md","LICENCE"} _site/ /var/www/html/cobalt/
+rsync -avze --delete --exclude={"*.sh","README.md","LICENCE"} html/ /var/www/html/cobalt/
 git push
 
